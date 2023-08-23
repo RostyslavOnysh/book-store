@@ -1,8 +1,7 @@
 package spring.boot.bookstore.service;
 
-import spring.boot.bookstore.model.Book;
-
 import java.util.List;
+import spring.boot.bookstore.model.Book;
 
 public interface BookService {
     Book save(Book book);
