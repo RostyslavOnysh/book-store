@@ -1,20 +1,19 @@
-package spring.boot.bookstore.repository;
+package spring.boot.bookstore.repository.impl;
 
 import java.util.List;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.DataAccessException;
 import org.springframework.stereotype.Repository;
 import spring.boot.bookstore.model.Book;
+import spring.boot.bookstore.repository.BookRepository;
 
 @Repository
-public class BookRepImpl implements BookRep {
-
+public class BookRepositoryImpl implements BookRepository {
     private final SessionFactory sessionFactory;
 
-    @Autowired
-    public BookRepImpl(SessionFactory sessionFactory) {
+    public BookRepositoryImpl(SessionFactory sessionFactory) {
         this.sessionFactory = sessionFactory;
     }
 
@@ -32,21 +31,21 @@ public class BookRepImpl implements BookRep {
             if (transaction != null) {
                 transaction.rollback();
             }
-            throw new RuntimeException("Can`t insert user into DB ", e);
+            throw new DataAccessException("Can't create book " + book, e) {
+            };
         } finally {
             if (session != null) {
                 session.close();
             }
         }
-
     }
 
     @Override
     public List<Book> findAll() {
         try (Session session = sessionFactory.openSession()) {
-            return session.createQuery("FROM Book", Book.class).getResultList();
-        } catch (Exception e) {
-            throw new RuntimeException("Can`t get all books from Books DB", e);
+            return session
+                    .createQuery("FROM Book", Book.class)
+                    .getResultList();
         }
     }
 }
