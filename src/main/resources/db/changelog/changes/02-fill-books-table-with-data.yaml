@@ -1,0 +1,89 @@
+databaseChangeLog:
+  - changeSet:
+      id: fill-books-table-by-data
+      author: Ros
+      changes:
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: "title"
+                  value: "Sample Book 1"
+              - column:
+                  name: "author"
+                  value: "Author A"
+              - column:
+                  name: "isbn"
+                  value: "9781234567897"
+              - column:
+                  name: "price"
+                  value: "19.99"
+              - column:
+                  name: "description"
+                  value: "This is a sample book description."
+              - column:
+                  name: "cover_image"
+                  value: "https://example.com/cover1.jpg"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: "title"
+                  value: "Sample Book 2"
+              - column:
+                  name: "author"
+                  value: "Author B"
+              - column:
+                  name: "isbn"
+                  value: "9789876543210"
+              - column:
+                  name: "price"
+                  value: "24.99"
+              - column:
+                  name: "description"
+                  value: "This is a sample book description."
+              - column:
+                  name: "cover_image"
+                  value: "https://example.com/cover2.jpg"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: "title"
+                  value: "Sample Book 3"
+              - column:
+                  name: "author"
+                  value: "Author C"
+              - column:
+                  name: "isbn"
+                  value: "9781122334455"
+              - column:
+                  name: "price"
+                  value: "29.99"
+              - column:
+                  name: "description"
+                  value: "This is a sample book description."
+              - column:
+                  name: "cover_image"
+                  value: "https://example.com/cover3.jpg"
+        - insert:
+            tableName: books
+            columns:
+              - column:
+                  name: "title"
+                  value: "Kobzar"
+              - column:
+                  name: "author"
+                  value: "Taras Hryhorovych Shevchenko"
+              - column:
+                  name: "isbn"
+                  value: " 1814090318601845"
+              - column:
+                  name: "price"
+                  value: "300.99"
+              - column:
+                  name: "description"
+                  value: "A complete collection of Ukrainian poems by Taras Shevchenko is called Kobzar too, after the title of Shevchenko's first book."
+              - column:
+                  name: "cover_image"
+                  value: "https://en.wikipedia.org/wiki/File:Kobzar1840.png"
