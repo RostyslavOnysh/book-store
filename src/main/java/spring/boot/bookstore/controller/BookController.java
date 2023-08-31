@@ -55,8 +55,9 @@ public class BookController {
                               @RequestBody CreateBookRequestDto bookRequestDto) {
         return bookService.updateBook(id, bookRequestDto);
     }
+
     @GetMapping("/search")
-    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters){
+    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
         return bookService.searchBooks(searchParameters);
     }
 }
