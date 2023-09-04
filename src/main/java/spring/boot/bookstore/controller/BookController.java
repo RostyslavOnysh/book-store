@@ -1,5 +1,6 @@
 package spring.boot.bookstore.controller;
 
+import jakarta.validation.Valid;
 import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -13,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
-import spring.boot.bookstore.dto.BookSearchParametersDto;
+import spring.boot.bookstore.dto.BookSearchParameter;
 import spring.boot.bookstore.dto.request.CreateBookRequestDto;
 import spring.boot.bookstore.dto.response.BookDto;
 import spring.boot.bookstore.service.BookService;
@@ -35,7 +36,7 @@ public class BookController {
     }
 
     @PostMapping
-    public BookDto createBook(@RequestBody CreateBookRequestDto requestDto) {
+    public BookDto createBook(@RequestBody @Valid CreateBookRequestDto requestDto) {
         return bookService.createBook(requestDto);
     }
 
@@ -52,12 +53,12 @@ public class BookController {
 
     @PutMapping("/{id}")
     public BookDto updateById(@PathVariable Long id,
-                              @RequestBody CreateBookRequestDto bookRequestDto) {
+                              @RequestBody @Valid CreateBookRequestDto bookRequestDto) {
         return bookService.updateBook(id, bookRequestDto);
     }
 
     @GetMapping("/search")
-    public List<BookDto> searchBooks(BookSearchParametersDto searchParameters) {
+    public List<BookDto> searchBooks(BookSearchParameter searchParameters) {
         return bookService.searchBooks(searchParameters);
     }
 }
