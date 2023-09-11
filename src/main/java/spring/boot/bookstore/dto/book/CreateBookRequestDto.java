@@ -1,20 +1,18 @@
-package spring.boot.bookstore.dto.request;
+package spring.boot.bookstore.dto.book;
 
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import lombok.Data;
-import spring.boot.bookstore.validation.book.author.Author;
+import org.hibernate.validator.constraints.Length;
 import spring.boot.bookstore.validation.book.isbn.Isbn;
-import spring.boot.bookstore.validation.book.title.Title;
 
 @Data
 public class CreateBookRequestDto {
     @NotNull
-    @Title
+    @Length(min = 4, max = 255)
     private String title;
     @NotNull
-    @Author
     private String author;
     @Isbn
     private String isbn;
