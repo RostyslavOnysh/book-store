@@ -1,0 +1,29 @@
+databaseChangeLog:
+  - changeSet:
+      id: fill-users-table-by-data
+      author: Ros
+      changes:
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: "email", value: "john1@gmail.com"}
+              - column: {name: "password", value: "$%^&*()DFGHJKL>dfghjkl$%^&*()DFGHJKL>dfghjkl"} # "111"}
+              - column: {name: "first_name", value: "John"}
+              - column: {name: "last_name", value: "alicovich"}
+              - column: {name: "shipping_address", value: "provulok bobd, cpo55"}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: "email", value: "alice35@gmail.com"}
+              - column: {name: "password", value: "DFGHJKL:#$%^&*()34567890SDFGHJKLdfghjk0SDFGHJKLdfghjk"} # "222"}
+              - column: {name: "first_name", value: "alice"}
+              - column: {name: "last_name", value: "bobovich"}
+              - column: {name: "shipping_address", value: "provulok alice, jkE33"}
+        - insert:
+            tableName: users
+            columns:
+              - column: {name: "email", value: "bob2@gmail.com"}
+              - column: {name: "password", value: "lkjftFHHJJNBVDD$%^*IHBHGCGF3"} # "333"}
+              - column: {name: "first_name", value: "bob"}
+              - column: {name: "last_name", value: "alison"}
+              - column: {name: "shipping_address", value: "provulok boba, sH12"}
