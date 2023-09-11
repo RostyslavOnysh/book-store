@@ -1,10 +1,10 @@
-package spring.boot.bookstore.dto.response;
+package spring.boot.bookstore.dto.book;
 
 import java.math.BigDecimal;
 import lombok.Data;
 
 @Data
-public class BookDto {
+public class BookResponseDto {
     private Long id;
     private String title;
     private String author;
