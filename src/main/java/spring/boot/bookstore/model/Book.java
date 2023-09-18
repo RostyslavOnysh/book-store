@@ -2,6 +2,7 @@ package spring.boot.bookstore.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -12,10 +13,8 @@ import jakarta.persistence.Table;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.apache.commons.lang3.builder.ToStringExclude;
 import org.hibernate.annotations.SQLDelete;
@@ -46,7 +45,7 @@ public class Book {
 
     @ToStringExclude
     @EqualsAndHashCode.Exclude
-    @ManyToMany
+    @ManyToMany (fetch = FetchType.EAGER) // added  (fetch = FetchType.EAGER)
     @JoinTable(name = "books_categories",
             joinColumns = @JoinColumn(name = "books_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
