@@ -36,14 +36,16 @@ public class BookController {
     @GetMapping
     @Operation(summary = "Get all books from the library",
             description = "Retrieves a paginated list of all available books in the library."
+                    + "Requires authentication for authorized access."
     )
     public List<BookResponseDto> getAll(Pageable pageable) {
         return bookService.findAll(pageable);
     }
 
     @GetMapping("/{id}")
-    @Operation(summary = "Get a book by its ID",
-            description = "Retrieves a book from the library by its unique identifier (ID)."
+    @Operation(summary = "Retrieve a book by ID",
+            description = "Get book details using its unique identifier (ID). "
+                    + "Requires authentication for authorized access."
     )
     public BookResponseDto getBookById(@PathVariable Long id) {
         return bookService.getBookById(id);
@@ -52,16 +54,18 @@ public class BookController {
     @PostMapping
     @Operation(summary = "Create a new book",
             description = "Adds a new book to the library's collection."
-                    + " Requires a valid book data payload in the request body.")
+                    + " Requires a valid book data payload in the request body."
+                    + "Requires authentication for authorized access.")
     @PreAuthorize("hasRole('ADMIN')")
     public BookResponseDto createBook(@RequestBody @Valid CreateBookRequestDto requestDto) {
         logger.info("Received a request to create a book: {}", requestDto.getTitle());
-        return bookService.createBook(requestDto);
+        return bookService.save(requestDto);
     }
 
     @GetMapping("/title")
     @Operation(summary = "Get books by title",
             description = "Retrieves a list of books in the library that match the specified title."
+                    + "Requires authentication for authorized access."
     )
     public List<BookResponseDto> getAllByTitle(@RequestParam String title) {
         return bookService.getBookByTitle(title);
@@ -70,6 +74,7 @@ public class BookController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @Operation(summary = "Delete a book by its ID",
             description = "Soft deletes a book from the library by its unique identifier (ID)."
+                    + "Requires authentication for authorized access."
     )
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
@@ -93,8 +98,8 @@ public class BookController {
                     + "various search parameters such as title, author, or genre."
     )
     @GetMapping("/search")
-    @PreAuthorize("hasRole('USER')")
-    public List<BookResponseDto> searchBooks(BookSearchParameter searchParameters) {
-        return bookService.searchBooks(searchParameters);
+    public List<BookResponseDto> searchBooks(BookSearchParameter searchParameters,
+                                             Pageable pageable) {
+        return bookService.searchBooks(searchParameters, pageable);
     }
 }
