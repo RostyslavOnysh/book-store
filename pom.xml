@@ -30,26 +30,20 @@
     </properties>
 
     <dependencies>
-
-        <!-- Exclude Logback -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter</artifactId>
-            <!-- Can delete this if smth went wrong !!! -->
             <exclusions>
                 <exclusion>
                     <groupId>org.springframework.boot</groupId>
                     <artifactId>spring-boot-starter-logging</artifactId>
                 </exclusion>
             </exclusions>
-            <!-- Exclude Logback -->
         </dependency>
-        <!-- Add Log4j 2 Starter -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-log4j2</artifactId>
         </dependency>
-        <!-- Add Log4j 2 Can delete this if smth went wrong -->
 
 
         <dependency>

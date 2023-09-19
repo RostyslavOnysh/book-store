@@ -4,10 +4,11 @@ import java.util.List;
 import org.springframework.data.domain.Pageable;
 import spring.boot.bookstore.dto.book.BookResponseDto;
 import spring.boot.bookstore.dto.book.BookSearchParameter;
+import spring.boot.bookstore.dto.book.BookWithoutCategoryIdsDto;
 import spring.boot.bookstore.dto.book.CreateBookRequestDto;
 
 public interface BookService {
-    BookResponseDto createBook(CreateBookRequestDto requestDto);
+    BookResponseDto save(CreateBookRequestDto requestDto);
 
     List<BookResponseDto> findAll(Pageable pageable);
 
@@ -19,5 +20,7 @@ public interface BookService {
 
     void deleteById(Long id);
 
-    List<BookResponseDto> searchBooks(BookSearchParameter searchParameters);
+    List<BookResponseDto> searchBooks(BookSearchParameter searchParameters, Pageable pageable);
+
+    List<BookWithoutCategoryIdsDto> findAllByCategoryId(Long categoryId, Pageable pageable);
 }

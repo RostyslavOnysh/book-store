@@ -1,0 +1,16 @@
+databaseChangeLog:
+  - changeSet:
+      id: fill-categories-table-with-data
+      author: Ros
+      changes:
+        - insert:
+            tableName: category
+            columns:
+              - column: {name: "name", value: "Action and Adventure Fiction"}
+              - column: {name: "description", value: "Books in the action adventure genre not only have the action sequenc..."}
+        - insert:
+            tableName: category
+            columns:
+              - column: { name: "name", value: "Graphic Novel" }
+              - column: { name: "description", value: " long-form, fictional work of sequential art....." }
+
