@@ -3,6 +3,8 @@ package spring.boot.bookstore.service.user.impl;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import spring.boot.bookstore.dto.user.UserRegistrationRequestDto;
@@ -43,6 +45,14 @@ public class UserServiceImpl implements UserService {
         defaultUserRoleSet.add(userRole);
         user.setRoles(defaultUserRoleSet);
         return userMapper.toDto(userRepository.save(user));
+    }
+
+    @Override
+    public User getAuthenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return userRepository.findByEmail(authentication.getName()).orElseThrow(
+                () -> new RuntimeException("Can`t find user with according email"
+                        + authentication.getName()));
     }
 }
 
