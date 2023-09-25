@@ -18,7 +18,6 @@ import lombok.ToString;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-
 @Entity
 @Getter
 @Setter
@@ -40,7 +39,6 @@ public class ShoppingCart {
             joinColumns = @JoinColumn(name = "shopping_cart_id"),
             inverseJoinColumns = @JoinColumn(name = "cart_items_id"))
   private Set<CartItem> cartItems;
-
 
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted = false;

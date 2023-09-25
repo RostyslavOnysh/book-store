@@ -20,7 +20,8 @@ import spring.boot.bookstore.model.ShoppingCart;
 import spring.boot.bookstore.service.cartitem.CartItemService;
 import spring.boot.bookstore.service.shoppingcart.ShoppingCartService;
 
-@Tag(name = "Shopping Cart Controller management", description = "Endpoints for managing Library products")
+@Tag(name = "Shopping Cart Controller management",
+        description = "Endpoints for managing Library products")
 @RequiredArgsConstructor
 @RestController
 @RequestMapping("/cart")
@@ -30,8 +31,9 @@ public class ShoppingCartController {
     private final CartItemService cartItemService;
 
     @PostMapping
-    @Operation(summary = "")
-    public CartItemResponseDto addCartItem(@RequestBody @Valid CartItemRequestDto cartItemRequestDto) {
+    @Operation(summary = "add new item")
+    public CartItemResponseDto addCartItem(@RequestBody @Valid
+                                               CartItemRequestDto cartItemRequestDto) {
         return shoppingCartService.save(cartItemRequestDto);
     }
 
@@ -41,7 +43,6 @@ public class ShoppingCartController {
     public ShoppingCart getShoppingCart() {
         return shoppingCartService.getShoppingCart();
     }
-
 
     @PutMapping("/cart-items/{id}")
     @PreAuthorize("hasRole('USER')")
