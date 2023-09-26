@@ -5,7 +5,7 @@ import lombok.Data;
 import spring.boot.bookstore.dto.cartitem.CartItemResponseDto;
 
 @Data
-public class ShoppingResponseDto {
+public class ShoppingCartResponseDto {
     private Long id;
     private Long userId;
     private Set<CartItemResponseDto> cartItems;

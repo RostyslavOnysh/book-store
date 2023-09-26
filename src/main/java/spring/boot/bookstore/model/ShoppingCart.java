@@ -2,16 +2,16 @@ package spring.boot.bookstore.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
+import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -27,18 +27,19 @@ import org.hibernate.annotations.Where;
 @Table(name = "shopping_carts")
 public class ShoppingCart {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     @MapsId
-    @OneToOne
-    @JoinColumn(name = "user_id")
+    @ManyToOne
+    @JoinColumn(name = "user_id",nullable = false)
     private User user;
 
     @ManyToMany
     @JoinTable(name = "shopping_cart_items",
             joinColumns = @JoinColumn(name = "shopping_cart_id"),
             inverseJoinColumns = @JoinColumn(name = "cart_items_id"))
-  private Set<CartItem> cartItems;
+    @ToString.Exclude
+    @EqualsAndHashCode.Exclude
+  private List<CartItem> cartItems = new ArrayList<>();
 
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted = false;
