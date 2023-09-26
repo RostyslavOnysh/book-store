@@ -12,15 +12,14 @@ public interface CartItemMapper {
     CartItemResponseDto toDto(CartItem cartItem);
 
     @AfterMapping
-    default void setBookTitle(@MappingTarget CartItemResponseDto cartItemResponseDto,
-                              CartItem cartItem) {
-        cartItemResponseDto.setBookTitle(String.valueOf(cartItem.getBook().getId()));
-
+    default void setBookId(@MappingTarget CartItemResponseDto cartItemResponseDto,
+                           CartItem cartItem) {
+        cartItemResponseDto.setBookId(cartItem.getBook().getId());
     }
 
     @AfterMapping
-    default void setAuthor(@MappingTarget CartItemResponseDto cartItemResponseDto,
-                           CartItem cartItem) {
-        cartItemResponseDto.setAuthor(cartItem.getBook().getAuthor());
+    default void setBookTitle(@MappingTarget CartItemResponseDto cartItemResponseDto,
+                              CartItem cartItem) {
+        cartItemResponseDto.setBookTitle(String.valueOf(cartItem.getBook().getId()));
     }
 }
