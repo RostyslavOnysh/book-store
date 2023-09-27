@@ -7,5 +7,5 @@ import spring.boot.bookstore.model.ShoppingCart;
 
 @Repository
 public interface ShoppingCartRepository extends JpaRepository<ShoppingCart, Long> {
-    Optional<ShoppingCart> findUserById(Long id);
+    Optional<ShoppingCart> getUserById(Long id);
 }
