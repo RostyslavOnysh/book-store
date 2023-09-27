@@ -6,7 +6,6 @@ import org.springframework.transaction.annotation.Transactional;
 import spring.boot.bookstore.dto.cartitem.CartItemRequestDto;
 import spring.boot.bookstore.dto.cartitem.CartItemResponseDto;
 import spring.boot.bookstore.dto.shoppingcart.ShoppingCartResponseDto;
-import spring.boot.bookstore.exception.EntityNotFoundException;
 import spring.boot.bookstore.model.ShoppingCart;
 import spring.boot.bookstore.model.User;
 import spring.boot.bookstore.repository.shoppingcart.ShoppingCartRepository;
@@ -42,7 +41,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         return shoppingCartDto;
     }
 
-    private ShoppingCart registerNewCart(User user) { // was created this method
+    private ShoppingCart registerNewCart(User user) {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.setUser(user);
         shoppingCartRepository.save(shoppingCart);

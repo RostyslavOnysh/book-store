@@ -66,7 +66,8 @@ public class CartItemServiceImpl implements CartItemService {
 
     @Override
     public void setShoppingCartAndCartItems(User user, CartItem cartItem) {
-     ShoppingCart shoppingCart = shoppingCartRepository.findUserById(user.getId()).orElseGet(()-> registerNewCart(user));
+        ShoppingCart shoppingCart = shoppingCartRepository.findUserById(user.getId())
+                .orElseGet(() -> registerNewCart(user));
         cartItem.setShoppingCart(shoppingCart);
         List<CartItem> cartItems = new ArrayList<>();
         cartItems.add(cartItem);
@@ -77,7 +78,7 @@ public class CartItemServiceImpl implements CartItemService {
         }
     }
 
-    private ShoppingCart registerNewCart(User user) { // was created this method
+    private ShoppingCart registerNewCart(User user) {
         ShoppingCart shoppingCart = new ShoppingCart();
         shoppingCart.setUser(user);
         shoppingCartRepository.save(shoppingCart);

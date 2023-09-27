@@ -28,10 +28,9 @@ import org.hibernate.annotations.Where;
 @Table(name = "shopping_carts")
 public class ShoppingCart {
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)  // added generated strategy
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    // @MapsId  deleted
-    @OneToOne   // change to OneToOne
+    @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
