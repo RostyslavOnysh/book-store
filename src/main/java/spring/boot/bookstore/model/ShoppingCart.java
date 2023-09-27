@@ -2,12 +2,13 @@ package spring.boot.bookstore.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.MapsId;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import java.util.ArrayList;
 import java.util.List;
@@ -27,10 +28,11 @@ import org.hibernate.annotations.Where;
 @Table(name = "shopping_carts")
 public class ShoppingCart {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)  // added generated strategy
     private Long id;
-    @MapsId
-    @ManyToOne
-    @JoinColumn(name = "user_id",nullable = false)
+    // @MapsId  deleted
+    @OneToOne   // change to OneToOne
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @ManyToMany
@@ -39,7 +41,7 @@ public class ShoppingCart {
             inverseJoinColumns = @JoinColumn(name = "cart_items_id"))
     @ToString.Exclude
     @EqualsAndHashCode.Exclude
-  private List<CartItem> cartItems = new ArrayList<>();
+    private List<CartItem> cartItems = new ArrayList<>();
 
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted = false;

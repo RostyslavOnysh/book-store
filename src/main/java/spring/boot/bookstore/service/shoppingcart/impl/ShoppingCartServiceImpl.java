@@ -28,19 +28,24 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     }
 
     @Override
-    @Transactional(readOnly = true)
+    @Transactional
     public ShoppingCartResponseDto getShoppingCart() {
         User authenticatedUser = userService.getAuthenticated();
         ShoppingCart shoppingCart = shoppingCartRepository
-                .findById(authenticatedUser.getId())
-                .orElseThrow(() ->
-                        new EntityNotFoundException("Can't find a shopping cart with ID : "
-                        + authenticatedUser.getId()));
+                .findUserById(authenticatedUser.getId()) // change to findUserById
+                .orElseGet(() -> registerNewCart(authenticatedUser));
         Long id = shoppingCart.getId();
         ShoppingCartResponseDto shoppingCartDto = new ShoppingCartResponseDto();
         shoppingCartDto.setId(id);
         shoppingCartDto.setUserId(authenticatedUser.getId());
         shoppingCartDto.setCartItems(cartItemService.findByShoppingCartId(id));
         return shoppingCartDto;
+    }
+
+    private ShoppingCart registerNewCart(User user) { // was created this method
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUser(user);
+        shoppingCartRepository.save(shoppingCart);
+        return shoppingCart;
     }
 }

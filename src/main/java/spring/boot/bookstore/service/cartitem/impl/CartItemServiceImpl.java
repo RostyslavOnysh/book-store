@@ -14,6 +14,7 @@ import spring.boot.bookstore.exception.EntityNotFoundException;
 import spring.boot.bookstore.mapper.CartItemMapper;
 import spring.boot.bookstore.model.CartItem;
 import spring.boot.bookstore.model.ShoppingCart;
+import spring.boot.bookstore.model.User;
 import spring.boot.bookstore.repository.BookRepository;
 import spring.boot.bookstore.repository.cartitem.CartItemRepository;
 import spring.boot.bookstore.repository.shoppingcart.ShoppingCartRepository;
@@ -36,8 +37,8 @@ public class CartItemServiceImpl implements CartItemService {
         CartItem cartItem = new CartItem();
         cartItem.setBook(bookRepository.getById(cartItemRequestDto.getBookId()));
         cartItem.setQuantity(cartItemRequestDto.getQuantity());
-        Long id = userService.getAuthenticated().getId();
-        setShoppingCartAndCartItems(id, cartItem);
+        User user = userService.getAuthenticated();
+        setShoppingCartAndCartItems(user, cartItem);
         return mapper.toDto(cartItemRepository.save(cartItem));
     }
 
@@ -64,11 +65,8 @@ public class CartItemServiceImpl implements CartItemService {
     }
 
     @Override
-    public void setShoppingCartAndCartItems(Long id, CartItem cartItem) {
-        ShoppingCart shoppingCart = shoppingCartRepository.findById(id)
-                .orElseThrow(() ->
-                                new EntityNotFoundException("Can't find shopping cart"
-                                        + " by ID : " + id));
+    public void setShoppingCartAndCartItems(User user, CartItem cartItem) {
+     ShoppingCart shoppingCart = shoppingCartRepository.findUserById(user.getId()).orElseGet(()-> registerNewCart(user));
         cartItem.setShoppingCart(shoppingCart);
         List<CartItem> cartItems = new ArrayList<>();
         cartItems.add(cartItem);
@@ -77,5 +75,12 @@ public class CartItemServiceImpl implements CartItemService {
         } else {
             shoppingCart.getCartItems().add(cartItem);
         }
+    }
+
+    private ShoppingCart registerNewCart(User user) { // was created this method
+        ShoppingCart shoppingCart = new ShoppingCart();
+        shoppingCart.setUser(user);
+        shoppingCartRepository.save(shoppingCart);
+        return shoppingCart;
     }
 }

@@ -5,6 +5,7 @@ import spring.boot.bookstore.dto.cartitem.CartItemRequestDto;
 import spring.boot.bookstore.dto.cartitem.CartItemResponseDto;
 import spring.boot.bookstore.dto.cartitem.UpdateQuantityDto;
 import spring.boot.bookstore.model.CartItem;
+import spring.boot.bookstore.model.User;
 
 public interface CartItemService {
 
@@ -14,7 +15,7 @@ public interface CartItemService {
 
     CartItemResponseDto update(UpdateQuantityDto updateQuantityDto, Long id);
 
-    void setShoppingCartAndCartItems(Long id, CartItem cartItem);
+    void setShoppingCartAndCartItems(User user, CartItem cartItem);
 
-    void delete(Long id);
+    void delete(Long cartItemId);
 }
