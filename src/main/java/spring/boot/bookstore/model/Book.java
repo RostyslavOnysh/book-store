@@ -42,15 +42,13 @@ public class Book {
     private String description;
     @Column(name = "coverImage")
     private String coverImage;
-
     @ToStringExclude
     @EqualsAndHashCode.Exclude
-    @ManyToMany (fetch = FetchType.EAGER) // added  (fetch = FetchType.EAGER)
+    @ManyToMany (fetch = FetchType.EAGER)
     @JoinTable(name = "books_categories",
             joinColumns = @JoinColumn(name = "books_id"),
             inverseJoinColumns = @JoinColumn(name = "category_id"))
     private Set<Category> categories = new HashSet<>();
-
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted = false;
 }

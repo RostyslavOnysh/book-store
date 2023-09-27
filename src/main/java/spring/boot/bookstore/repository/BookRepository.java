@@ -13,9 +13,8 @@ import spring.boot.bookstore.model.Book;
 public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificationExecutor<Book> {
     List<Book> findAllByTitleContainsIgnoreCase(String title);
 
-    @Query("FROM Book b JOIN b.categories c WHERE c.id =:categoryId")
-    List<Book> findByCategoryId(@Param("categoryId") Long categoryId,
-                                Pageable pageable);
+    List<Book> findBookByCategoriesId(@Param("categoryId") Long categoryId,
+                                      Pageable pageable);
 
     @Query("FROM Book b INNER JOIN FETCH b.categories")
     List<Book> findAllWithCategories(Pageable pageable);
