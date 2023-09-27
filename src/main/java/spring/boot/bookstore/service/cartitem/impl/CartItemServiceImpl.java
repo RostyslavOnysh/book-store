@@ -24,7 +24,6 @@ import spring.boot.bookstore.service.user.UserService;
 @Service
 @RequiredArgsConstructor
 public class CartItemServiceImpl implements CartItemService {
-
     private final ShoppingCartRepository shoppingCartRepository;
     private final CartItemRepository cartItemRepository;
     private final BookRepository bookRepository;
@@ -66,7 +65,7 @@ public class CartItemServiceImpl implements CartItemService {
 
     @Override
     public void setShoppingCartAndCartItems(User user, CartItem cartItem) {
-        ShoppingCart shoppingCart = shoppingCartRepository.findUserById(user.getId())
+        ShoppingCart shoppingCart = shoppingCartRepository.getUserById(user.getId())
                 .orElseGet(() -> registerNewCart(user));
         cartItem.setShoppingCart(shoppingCart);
         List<CartItem> cartItems = new ArrayList<>();
