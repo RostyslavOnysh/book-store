@@ -13,4 +13,3 @@ databaseChangeLog:
             columns:
               - column: { name: "name", value: "Graphic Novel" }
               - column: { name: "description", value: " long-form, fictional work of sequential art....." }
-
