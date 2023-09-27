@@ -16,7 +16,6 @@ import spring.boot.bookstore.service.user.UserService;
 @Service
 @RequiredArgsConstructor
 public class ShoppingCartServiceImpl implements ShoppingCartService {
-
     private final CartItemService cartItemService;
     private final UserService userService;
     private final ShoppingCartRepository shoppingCartRepository;
@@ -31,7 +30,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     public ShoppingCartResponseDto getShoppingCart() {
         User authenticatedUser = userService.getAuthenticated();
         ShoppingCart shoppingCart = shoppingCartRepository
-                .findUserById(authenticatedUser.getId()) // change to findUserById
+                .getUserById(authenticatedUser.getId())
                 .orElseGet(() -> registerNewCart(authenticatedUser));
         Long id = shoppingCart.getId();
         ShoppingCartResponseDto shoppingCartDto = new ShoppingCartResponseDto();
