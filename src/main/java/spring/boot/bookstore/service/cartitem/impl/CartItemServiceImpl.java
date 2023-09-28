@@ -19,6 +19,7 @@ import spring.boot.bookstore.repository.BookRepository;
 import spring.boot.bookstore.repository.cartitem.CartItemRepository;
 import spring.boot.bookstore.repository.shoppingcart.ShoppingCartRepository;
 import spring.boot.bookstore.service.cartitem.CartItemService;
+import spring.boot.bookstore.service.shoppingcart.impl.ShoppingCartManager;
 import spring.boot.bookstore.service.user.UserService;
 
 @Service
@@ -29,6 +30,7 @@ public class CartItemServiceImpl implements CartItemService {
     private final BookRepository bookRepository;
     private final UserService userService;
     private final CartItemMapper mapper;
+    private final ShoppingCartManager registerNewCart;
 
     @Override
     @Transactional
@@ -52,6 +54,10 @@ public class CartItemServiceImpl implements CartItemService {
     public CartItemResponseDto update(UpdateQuantityDto updateQuantityDto, Long id) {
         CartItem cartItem = cartItemRepository.findById(id).orElseThrow(
                 () -> new EntityNotFoundException("Can`t find cart by ID : " + id));
+        int newQuantity = updateQuantityDto.getQuantity();
+        if (newQuantity < 0) {
+            throw new IllegalArgumentException("Quantity cannot be negative");
+        }
         cartItem.setQuantity(updateQuantityDto.getQuantity());
         return mapper.toDto(cartItemRepository.save(cartItem));
     }
@@ -66,7 +72,7 @@ public class CartItemServiceImpl implements CartItemService {
     @Override
     public void setShoppingCartAndCartItems(User user, CartItem cartItem) {
         ShoppingCart shoppingCart = shoppingCartRepository.getUserById(user.getId())
-                .orElseGet(() -> registerNewCart(user));
+                .orElseGet(() -> registerNewCart.registerNewCart(user));
         cartItem.setShoppingCart(shoppingCart);
         List<CartItem> cartItems = new ArrayList<>();
         cartItems.add(cartItem);
@@ -75,12 +81,5 @@ public class CartItemServiceImpl implements CartItemService {
         } else {
             shoppingCart.getCartItems().add(cartItem);
         }
-    }
-
-    private ShoppingCart registerNewCart(User user) {
-        ShoppingCart shoppingCart = new ShoppingCart();
-        shoppingCart.setUser(user);
-        shoppingCartRepository.save(shoppingCart);
-        return shoppingCart;
     }
 }

@@ -19,6 +19,7 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
     private final CartItemService cartItemService;
     private final UserService userService;
     private final ShoppingCartRepository shoppingCartRepository;
+    private final ShoppingCartManager registerNewCart;
 
     @Override
     public CartItemResponseDto save(CartItemRequestDto requestDto) {
@@ -31,19 +32,12 @@ public class ShoppingCartServiceImpl implements ShoppingCartService {
         User authenticatedUser = userService.getAuthenticated();
         ShoppingCart shoppingCart = shoppingCartRepository
                 .getUserById(authenticatedUser.getId())
-                .orElseGet(() -> registerNewCart(authenticatedUser));
+                .orElseGet(() -> registerNewCart.registerNewCart(authenticatedUser));
         Long id = shoppingCart.getId();
         ShoppingCartResponseDto shoppingCartDto = new ShoppingCartResponseDto();
         shoppingCartDto.setId(id);
         shoppingCartDto.setUserId(authenticatedUser.getId());
         shoppingCartDto.setCartItems(cartItemService.findByShoppingCartId(id));
         return shoppingCartDto;
-    }
-
-    private ShoppingCart registerNewCart(User user) {
-        ShoppingCart shoppingCart = new ShoppingCart();
-        shoppingCart.setUser(user);
-        shoppingCartRepository.save(shoppingCart);
-        return shoppingCart;
     }
 }
