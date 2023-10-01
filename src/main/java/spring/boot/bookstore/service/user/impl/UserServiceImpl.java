@@ -3,10 +3,13 @@ package spring.boot.bookstore.service.user.impl;
 import java.util.HashSet;
 import java.util.Set;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import spring.boot.bookstore.dto.user.UserRegistrationRequestDto;
 import spring.boot.bookstore.dto.user.UserResponseDto;
+import spring.boot.bookstore.exception.EntityNotFoundException;
 import spring.boot.bookstore.exception.RegistrationException;
 import spring.boot.bookstore.mapper.UserMapper;
 import spring.boot.bookstore.model.Role;
@@ -18,7 +21,6 @@ import spring.boot.bookstore.service.user.UserService;
 @RequiredArgsConstructor
 @Component
 public class UserServiceImpl implements UserService {
-
     private final PasswordEncoder passwordEncoder;
     private final UserRepository userRepository;
     private final UserMapper userMapper;
@@ -44,5 +46,12 @@ public class UserServiceImpl implements UserService {
         user.setRoles(defaultUserRoleSet);
         return userMapper.toDto(userRepository.save(user));
     }
-}
 
+    @Override
+    public User getAuthenticated() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        return userRepository.findByEmail(authentication.getName()).orElseThrow(
+                () -> new EntityNotFoundException("Can`t find user with according email"
+                        + authentication.getName()));
+    }
+}

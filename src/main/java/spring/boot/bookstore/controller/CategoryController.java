@@ -31,7 +31,6 @@ import spring.boot.bookstore.service.category.CategoryService;
 @RestController
 @RequestMapping(value = "/categories")
 public class CategoryController {
-
     private static final Logger logger = LogManager.getLogger(BookController.class);
     private final CategoryService categoryService;
     private final BookService bookService;

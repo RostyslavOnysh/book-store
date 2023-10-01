@@ -5,29 +5,35 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 
-@Data
-@NoArgsConstructor
 @Entity
+@Data
 @Getter
 @Setter
-@SQLDelete(sql = "Update category SET is_deleted = true WHERE id=?")
-@Where(clause = "is_deleted=false")
-@Table(name = "category")
-public class Category {
+@SQLDelete(sql = "UPDATE cart_items SET is_deleted = true WHERE id = ?")
+@Where(clause = "is_deleted = false")
+@Table(name = "cart_items")
+public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Column(name = "name", nullable = false, unique = true)
-    private String name;
-    private String description;
+    @ManyToOne
+    @JoinColumn(name = "shopping_carts_id", nullable = false)
+    private ShoppingCart shoppingCart;
+    @OneToOne
+    @JoinColumn(name = "books_id", nullable = false)
+    private Book book;
+    @Column(name = "quantity", nullable = false)
+    private int quantity;
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted = false;
 }
