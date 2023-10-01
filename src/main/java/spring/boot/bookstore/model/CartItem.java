@@ -26,18 +26,14 @@ public class CartItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-
     @ManyToOne
     @JoinColumn(name = "shopping_carts_id", nullable = false)
     private ShoppingCart shoppingCart;
-
     @OneToOne
     @JoinColumn(name = "books_id", nullable = false)
     private Book book;
-
     @Column(name = "quantity", nullable = false)
     private int quantity;
-
     @Column(name = "is_deleted", nullable = false)
     private boolean isDeleted = false;
 }

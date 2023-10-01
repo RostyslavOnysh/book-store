@@ -33,7 +33,6 @@ public class ShoppingCart {
     @OneToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
     @ManyToMany
     @JoinTable(name = "shopping_cart_items",
             joinColumns = @JoinColumn(name = "shopping_cart_id"),
