@@ -62,7 +62,7 @@ public class OrderController {
                 .valueOf(String.valueOf(orderUpdateDto.getStatus())));
     }
 
-    @Operation(summary = "", description = "")
+    @Operation(summary = "Find all order Items", description = "Find all order Items")
     @GetMapping("/{orderId}/items")
     @PreAuthorize("hasRole('USER')")
     public Set<OrderItemResponseDto> findAllOrderItems(@PathVariable Long orderId) {
@@ -70,7 +70,7 @@ public class OrderController {
         return orderService.findAllOrderItems(orderId);
     }
 
-    @Operation(summary = "", description = "")
+    @Operation(summary = "Find order item by ID ", description = "Find order item by ID ")
     @GetMapping("/{orderId}/items/{itemId}")
     @PreAuthorize("hasRole('USER')")
     public OrderItemResponseDto findOrderItemById(@PathVariable Long orderId,
