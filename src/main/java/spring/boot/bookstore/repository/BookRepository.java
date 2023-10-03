@@ -18,5 +18,4 @@ public interface BookRepository extends JpaRepository<Book, Long>, JpaSpecificat
 
     @Query("FROM Book b INNER JOIN FETCH b.categories")
     List<Book> findAllWithCategories(Pageable pageable);
-
 }
