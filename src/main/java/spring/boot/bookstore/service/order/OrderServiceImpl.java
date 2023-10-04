@@ -19,9 +19,9 @@ import spring.boot.bookstore.model.Order;
 import spring.boot.bookstore.model.OrderItem;
 import spring.boot.bookstore.model.ShoppingCart;
 import spring.boot.bookstore.model.User;
-import spring.boot.bookstore.repository.OrderItemRepository;
 import spring.boot.bookstore.repository.OrderRepository;
 import spring.boot.bookstore.repository.shoppingcart.ShoppingCartRepository;
+import spring.boot.bookstore.service.emailsender.EmailService;
 import spring.boot.bookstore.service.shoppingcart.impl.ShoppingCartManager;
 import spring.boot.bookstore.service.user.UserService;
 
@@ -34,10 +34,9 @@ public class OrderServiceImpl implements OrderService {
     private final ShoppingCartRepository shoppingCartRepository;
     private final UserService userService;
     private final ShoppingCartManager registerNewCart;
-    private final OrderItemRepository orderItemRepository;
+    private final EmailService emailService;
 
-    @Override
-    public OrderResponseDto create(Long id, OrderRequestDto orderRequestDto) {
+    @Override public OrderResponseDto create(Long id, OrderRequestDto orderRequestDto) {
         User authUser = userService.getAuthenticated();
         ShoppingCart shoppingCart = shoppingCartRepository.getUserById(authUser.getId())
                 .orElseGet(() -> registerNewCart.registerNewCart(authUser));
@@ -67,15 +66,16 @@ public class OrderServiceImpl implements OrderService {
 
     @Override
     public OrderResponseDto updateOrderStatus(Long orderId, Order.Status status) {
-        OrderItem orderItem = orderItemRepository.findById(orderId).orElseThrow(
-                () -> new EntityNotFoundException("Can't find order by ID : " + orderId));
-        Order.Status newStatus = status;
-        if (newStatus == null) {
-            throw new IllegalArgumentException("Status cannot be null");
-        }
-        orderItem.setStatus(newStatus);
-        orderItemRepository.save(orderItem);
-        return orderMapper.toDto(orderItem.getOrder());
+        Order order = getOrderById(orderId);
+        order.setStatus(status);
+        order = repository.save(order);
+        emailService.sendStatusChangeEmail(order.getUser().getEmail(), status);
+        return orderMapper.toDto(order);
+    }
+
+    private Order getOrderById(Long orderId) {
+        return repository.findById(orderId).orElseThrow(() ->
+                        new EntityNotFoundException("can't find order by id: " + orderId));
     }
 
     @Override
