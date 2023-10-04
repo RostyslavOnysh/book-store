@@ -21,7 +21,7 @@ import spring.boot.bookstore.model.ShoppingCart;
 import spring.boot.bookstore.model.User;
 import spring.boot.bookstore.repository.OrderRepository;
 import spring.boot.bookstore.repository.shoppingcart.ShoppingCartRepository;
-import spring.boot.bookstore.service.emailsender.EmailService;
+import spring.boot.bookstore.service.emailsender.EmailServiceImpl;
 import spring.boot.bookstore.service.shoppingcart.impl.ShoppingCartManager;
 import spring.boot.bookstore.service.user.UserService;
 
@@ -34,7 +34,7 @@ public class OrderServiceImpl implements OrderService {
     private final ShoppingCartRepository shoppingCartRepository;
     private final UserService userService;
     private final ShoppingCartManager registerNewCart;
-    private final EmailService emailService;
+    private final EmailServiceImpl emailService;
 
     @Override public OrderResponseDto create(Long id, OrderRequestDto orderRequestDto) {
         User authUser = userService.getAuthenticated();
