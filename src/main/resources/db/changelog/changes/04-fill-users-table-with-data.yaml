@@ -6,24 +6,24 @@ databaseChangeLog:
         - insert:
             tableName: users
             columns:
-              - column: {name: "email", value: "john1@gmail.com"}
-              - column: {name: "password", value: "$%^&*()DFGHJKL>dfghjkl$%^&*()DFGHJKL>dfghjkl"} # "111"}
-              - column: {name: "first_name", value: "John"}
-              - column: {name: "last_name", value: "alicovich"}
-              - column: {name: "shipping_address", value: "provulok bobd, cpo55"}
+              - column: {name: "email", value: "Tinsley.dev@gmail.com"}
+              - column: {name: "password", value: "$2a$13$y2CEFnRtr.sgE5Hk9EiBlu0CsJ9UN00U6P15.Ug6dyTDWp2wr6day"}
+              - column: {name: "first_name", value: "Tinsley"}
+              - column: {name: "last_name", value: "Carpenter"}
+              - column: {name: "shipping_address", value: "Old Youghal Rd."}
         - insert:
             tableName: users
             columns:
-              - column: {name: "email", value: "alice35@gmail.com"}
-              - column: {name: "password", value: "DFGHJKL:#$%^&*()34567890SDFGHJKLdfghjk0SDFGHJKLdfghjk"} # "222"}
-              - column: {name: "first_name", value: "alice"}
-              - column: {name: "last_name", value: "bobovich"}
-              - column: {name: "shipping_address", value: "provulok alice, jkE33"}
+              - column: {name: "email", value: "Emelia.dev@gmail.com"}
+              - column: {name: "password", value: "$2a$13$KX30WwnbCLf2HtMWTvHe8u50zUvIOjN/98PGTQnp4fZkyhSDYgf6e"}
+              - column: {name: "first_name", value: "Emelia"}
+              - column: {name: "last_name", value: "Robbins"}
+              - column: {name: "shipping_address", value: "Barnalyra Charlestown"}
         - insert:
             tableName: users
             columns:
-              - column: {name: "email", value: "bob2@gmail.com"}
-              - column: {name: "password", value: "lkjftFHHJJNBVDD$%^*IHBHGCGF3"} # "333"}
-              - column: {name: "first_name", value: "bob"}
-              - column: {name: "last_name", value: "alison"}
-              - column: {name: "shipping_address", value: "provulok boba, sH12"}
+              - column: {name: "email", value: "Zyair.dev@gmail.com"}
+              - column: {name: "password", value: "$2a$13$01NgDFQR0rU/UifonegSJOTGx7p53nW/ScCch2IyYycEDegJRerVS"}
+              - column: {name: "first_name", value: "Zyair"}
+              - column: {name: "last_name", value: "Rush"}
+              - column: {name: "shipping_address", value: "30c Kearns Pl."}
