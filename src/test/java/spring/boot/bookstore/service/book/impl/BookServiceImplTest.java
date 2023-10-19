@@ -1,11 +1,12 @@
 package spring.boot.bookstore.service.book.impl;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.argThat;
+import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.verifyNoMoreInteractions;
@@ -28,14 +29,18 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.test.context.junit4.SpringRunner;
 import spring.boot.bookstore.dto.book.BookResponseDto;
+import spring.boot.bookstore.dto.book.BookSearchParameter;
+import spring.boot.bookstore.dto.book.BookWithoutCategoryIdsDto;
 import spring.boot.bookstore.dto.book.CreateBookRequestDto;
 import spring.boot.bookstore.exception.EntityNotFoundException;
 import spring.boot.bookstore.mapper.BookMapper;
 import spring.boot.bookstore.model.Book;
 import spring.boot.bookstore.model.Category;
 import spring.boot.bookstore.repository.BookRepository;
+import spring.boot.bookstore.repository.specification.book.builders.BookSpecificationBuilder;
 
 @ExtendWith(MockitoExtension.class)
 @RunWith(SpringRunner.class)
@@ -53,6 +58,9 @@ class BookServiceImplTest {
     private BookRepository bookRepository;
     @Mock
     private BookMapper bookMapper;
+
+    @Mock
+    private BookSpecificationBuilder bookSpecificationBuilder;
 
     @BeforeEach
     void setUp() {
@@ -142,7 +150,7 @@ class BookServiceImplTest {
         String emptyTitle = "";
         List<BookResponseDto> returnedBooks = bookService.getBookByTitle(emptyTitle);
         assertThat(returnedBooks).isNotNull();
-        assertThat(returnedBooks.isEmpty());
+        assertThat(returnedBooks).isEmpty();
     }
 
     @Test
@@ -194,5 +202,68 @@ class BookServiceImplTest {
         assertEquals("Can't find books by id: " + INVALID_BOOK_ID, exception.getMessage());
         verify(bookRepository, times(1)).findById(INVALID_BOOK_ID);
         verifyNoMoreInteractions(bookRepository);
+    }
+
+    @Test
+    @DisplayName("searchBooks_ValidSearchParameters_ReturnsMatchingBooks")
+    void searchBooks_ValidSearchParameters_ReturnsMatchingBooks() {
+        BookSearchParameter searchParameters = new BookSearchParameter(
+                new String[]{"Eneyida"},
+                new String[]{"Ivan Kotliarevsky"},
+                new String[]{"978-0-13-516630-7"},
+                new String[]{"88"},
+                "some desk",
+                new String[]{"burlesque poem"}
+        );
+        Specification<Book> expectedSpecification = mock(Specification.class);
+        when(bookSpecificationBuilder.build(argThat(searchParameters::equals)))
+                .thenReturn(expectedSpecification);
+        List<Book> matchingBooks = new ArrayList<>();
+        matchingBooks.add(new Book());
+        matchingBooks.add(new Book());
+        when(bookRepository.findAll(expectedSpecification)).thenReturn(matchingBooks);
+        List<BookResponseDto> result = bookService.searchBooks(searchParameters);
+        verify(bookSpecificationBuilder).build(argThat(searchParameters::equals));
+        verify(bookRepository).findAll(expectedSpecification);
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(2);
+        verifyNoMoreInteractions(bookRepository, bookSpecificationBuilder);
+    }
+
+    @Test
+    @DisplayName("searchBooks_EmptySearchParameters_ReturnsAllBooks")
+    void searchBooks_EmptySearchParameters_ReturnsAllBooks() {
+        final BookSearchParameter searchParameters = new BookSearchParameter(
+                new String[0],
+                new String[0],
+                new String[0],
+                new String[0],
+                "",
+                new String[0]);
+        final Specification<Book> bookSpecification = mock(Specification.class);
+        List<Book> allBooks = new ArrayList<>();
+        allBooks.add(new Book());
+        allBooks.add(new Book());
+        allBooks.add(new Book());
+        when(bookSpecificationBuilder.build(searchParameters)).thenReturn(bookSpecification);
+        when(bookRepository.findAll(bookSpecification)).thenReturn(allBooks);
+        List<BookResponseDto> result = bookService.searchBooks(searchParameters);
+        verify(bookSpecificationBuilder).build(searchParameters);
+        verify(bookRepository).findAll(bookSpecification);
+        assertThat(result).isNotNull();
+        assertThat(result).hasSize(3);
+        verifyNoMoreInteractions(bookRepository, bookSpecificationBuilder);
+    }
+
+    @Test
+    @DisplayName("findAllByCategoryId_ReturnsMatchingBooks")
+    void findAllByCategoryId_ReturnsMatchingBooks() {
+        Long categoryId = 9L;
+        Pageable pageable = PageRequest.of(0, 10);
+        List<Book> matchingBooks = new ArrayList<>();
+        when(bookRepository.findBookByCategoriesId(categoryId, pageable)).thenReturn(matchingBooks);
+        List<BookWithoutCategoryIdsDto> result = bookService
+                .findAllByCategoryId(categoryId, pageable);
+        assertEquals(0, result.size());
     }
 }
