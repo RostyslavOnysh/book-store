@@ -11,7 +11,7 @@ import spring.boot.bookstore.validation.book.isbn.Isbn;
 @Data
 public class CreateBookRequestDto {
     @NotNull
-    @Length(min = 4, max = 255)
+    @Length(min = 2, max = 255)
     private String title;
     @NotNull
     private String author;

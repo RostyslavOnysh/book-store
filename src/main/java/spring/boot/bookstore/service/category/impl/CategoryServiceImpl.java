@@ -20,8 +20,8 @@ public class CategoryServiceImpl implements CategoryService {
     private final CategoryMapper categoryMapper;
 
     @Override
-    public List<CategoryResponseDto> findAll(Pageable peagable) {
-        return categoryRepository.findAll(peagable)
+    public List<CategoryResponseDto> findAll(Pageable pageable) {
+        return categoryRepository.findAll(pageable)
                 .stream()
                 .map(categoryMapper::toDto)
                 .collect(Collectors.toList());
@@ -52,6 +52,8 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public void deleteById(Long id) {
-        categoryRepository.deleteById(id);
+        Category category = categoryRepository.findById(id).orElseThrow(
+                () -> new EntityNotFoundException("Category not found by ID :" + id));
+        categoryRepository.delete(category);
     }
 }

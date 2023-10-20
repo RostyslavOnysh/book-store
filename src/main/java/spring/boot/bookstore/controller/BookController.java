@@ -98,8 +98,7 @@ public class BookController {
                     + "various search parameters such as title, author, or genre."
     )
     @GetMapping("/search")
-    public List<BookResponseDto> searchBooks(BookSearchParameter searchParameters,
-                                             Pageable pageable) {
-        return bookService.searchBooks(searchParameters, pageable);
+    public List<BookResponseDto> searchBooks(BookSearchParameter searchParameters) {
+        return bookService.searchBooks(searchParameters);
     }
 }
