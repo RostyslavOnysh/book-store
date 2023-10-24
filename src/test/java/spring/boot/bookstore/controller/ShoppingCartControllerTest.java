@@ -1,5 +1,6 @@
 package spring.boot.bookstore.controller;
 
+import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static spring.boot.bookstore.controller.CategoryControllerTest.convertObjectToJsonString;
@@ -79,5 +80,19 @@ class ShoppingCartControllerTest {
                 .build()
                 .perform(requestBuilder)
                 .andExpect(status().isOk());
+    }
+
+    @Test
+    @DisplayName("delete cart item by ID")
+    void deleteCartItemById() throws Exception {
+        Long cartItemId = 1L;
+        doNothing().when(this.cartItemService).delete(cartItemId);
+        MockHttpServletRequestBuilder requestBuilder =
+                MockMvcRequestBuilders.delete("/cart/" + cartItemId);
+        MockMvcBuilders.standaloneSetup(this.shoppingCartController)
+                .build()
+                .perform(requestBuilder)
+                .andExpect(status().isOk());
+
     }
 }
