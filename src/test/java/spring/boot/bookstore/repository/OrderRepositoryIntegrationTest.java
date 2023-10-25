@@ -19,7 +19,7 @@ import spring.boot.bookstore.model.User;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-class OrderRepositoryTest {
+class OrderRepositoryIntegrationTest {
     @Autowired
     private OrderRepository orderRepository;
     @Autowired

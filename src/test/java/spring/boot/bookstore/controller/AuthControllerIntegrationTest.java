@@ -24,10 +24,10 @@ import spring.boot.bookstore.dto.user.UserResponseDto;
 import spring.boot.bookstore.security.AuthenticationService;
 import spring.boot.bookstore.service.user.UserService;
 
-@ContextConfiguration(classes = {AuthControllerTest.class})
+@ContextConfiguration(classes = {AuthControllerIntegrationTest.class})
 @ExtendWith(SpringExtension.class)
-@WebMvcTest(AuthControllerTest.class)
-class AuthControllerTest {
+@WebMvcTest(AuthControllerIntegrationTest.class)
+class AuthControllerIntegrationTest {
     @InjectMocks
     private AuthController authController;
     @Mock

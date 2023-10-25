@@ -19,7 +19,7 @@ import spring.boot.bookstore.model.ShoppingCart;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.AUTO_CONFIGURED)
-class ShoppingCartRepositoryTest {
+class ShoppingCartRepositoryIntegrationTest {
     private static final Long VALID_ID = 1L;
     @MockBean
     private ShoppingCartRepository shoppingCartRepository;
