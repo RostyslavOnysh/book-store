@@ -221,6 +221,18 @@ docker-compose up
 * This command will start containers for your application and the database in Docker.
 * After a successful launch, you can interact with your application's API. You can use tools like ***Postman or Swagger*** to interact with the API and verify its functionality.
 
+  # Using Swagger
+* User Registration
+1. Open Postman or another tool for sending HTTP requests.
+2. Create a POST request to /auth/register to register a new user. In the request body, provide the necessary information, such as email, password, first name, last name, and shipping address etc.
+3. Send the request, and the user will be registered.
+
+* Using Swagger
+After successfully registering a user, you are ready to use Swagger for documenting and testing your API. You can follow these steps:
+1. Start your application and navigate to the URL where you have set up Swagger. This typically looks like http://your_server/api/swagger-ui/.
+2. You may be prompted for a login and password to authenticate in Swagger. Enter the login you used during registration (usually your email address), along with the corresponding password.
+3. Now you can use Swagger to view and test various endpoints of your API. Swagger provides a convenient interface for making requests and checking the functionality of your application.
+
 
 # Contact ♨️📬
 Feel free to contact the author for any questions or feedback:
