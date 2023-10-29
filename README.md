@@ -21,27 +21,27 @@
 This application is designed for bookstores or libraries to manage their collection of books, categories, and user orders.
 
 ## Why Focus on This Application?
-his application is the perfect tool for bookstore or library owners who want a simple and effective way to manage their book collection,
+This application is the perfect tool for bookstore or library owners who want a simple and effective way to manage their book collection,
 user orders, and shopping cart inventory. It makes the process of purchasing and searching for books more convenient and organized for users.
 Therefore, this application provides many useful features for managing the book business and makes it easier for users to search for and order books.
 
 ### Users can utilize this application for: 📝
-1. Retrieving a list of all library books with pagination support.
-2. Obtaining detailed book information using its unique identifier.
-3. Searching for books by title.
-4. Searching for books based on various parameters such as title, author, or genre.
-5. Getting a list of all available book categories.
-6. Accessing detailed category information using its unique identifier.
-7. Retrieving a list of books belonging to a specific category.
-8. Creating a new order.
-9. Receiving a list of all items in a specific order.
-10. Retrieving details of a specific order item using order and item identifiers.
-11. Adding a new product to a user's shopping cart.
-12. Obtaining the contents of a user's shopping cart.
-13. Updating the quantity of a product in the shopping cart.
-14. Removing a product from the shopping cart.
-15. Searching for books by title, author, or ISBN.
-16. Filtering books by categories.
+🔸 Retrieving a list of all library books with pagination support.
+🔸 Obtaining detailed book information using its unique identifier.
+🔸 Searching for books by title.
+🔸 Searching for books based on various parameters such as title, author, or genre.
+🔸 Getting a list of all available book categories.
+🔸 Accessing detailed category information using its unique identifier.
+🔸 Retrieving a list of books belonging to a specific category.
+🔸 Creating a new order.
+🔸 Receiving a list of all items in a specific order.
+🔸 Retrieving details of a specific order item using order and item identifiers.
+🔸 Adding a new product to a user's shopping cart.
+🔸 Obtaining the contents of a user's shopping cart.
+🔸 Updating the quantity of a product in the shopping cart.
+🔸 Removing a product from the shopping cart.
+🔸 Searching for books by title, author, or ISBN.
+🔸 Filtering books by categories.
 
 # User Registration : 📌 
 1. Use the POST method:
