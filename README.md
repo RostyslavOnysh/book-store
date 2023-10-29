@@ -235,5 +235,3 @@ Feel free to contact the author for any questions or feedback:
 - Author: [Rostyslav](https://www.linkedin.com/in/rostyslav-onyshchenko-7ab348281/)
 # License ☑️
 This project is distributed under the MIT License. Feel free to modify and adapt it to your needs.
-
-
