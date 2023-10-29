@@ -1,42 +1,239 @@
-# book-store
+# Readers' Paradise: Your Bookish Heaven 
 
-## Hw-1
-An entity named "Book" was created with the following additional fields:
-  * id (Long, PK)
-  * title (String, not null)
-  * author (String, not null)
-  * isbn (String, not null, unique)
-  * price (BigDecimal, not null)
-  * description (String)
-  * coverImage (String)
 
-### For the fields where "not null" is required annotation was utilized : 
-- *@Column(nullable = false)*
+## Welcome to Readers' Paradise - Your Bookish Heaven!
 
-### The following components were implemented:
+This application is a library and order management system for a bookstore.
 
-* BookRepository along with its implementation
-* Book service
+## Project Technology Stack:
 
-### Upon establishing a connection with MySQL, I encountered an issue with the CI (Continuous Integration) checks. To address this problem, I adhered to the prescribed steps: 
+* Programming Language Java
+* Framework: Spring Boot
+* Spring Security and JWT: For authentication and security
+* Springdoc OpenAPI: For OpenAPI documentation
+* Logging System: Log4j2
+* Testing: JUnit
+* Database: MySQL
+* Liquibase: For database version management
+* Lombok: For boilerplate code generation
+* MapStruct: For mapper generation
+* Email: ***javax.mail***
+* Testcontainers: For integration tests with the H2 test database
 
-I  Followed the rules
-1. Create a new folder resources in the src/test directory
-2. Create a new file application.properties in the src/test/resources folder
-3. Add the following content to the application.properties file
-```bash 
-spring.datasource.url=jdbc:h2:mem:testdb
-spring.datasource.driverClassName=org.h2.Driver
-spring.datasource.username=sa
-spring.datasource.password=password
-spring.jpa.database-platform=org.hibernate.dialect.H2D
+## What is it for?
+This application is designed for bookstores or libraries to manage their collection of books, categories, and user orders.
+
+## Why Focus on This Application?
+his application is the perfect tool for bookstore or library owners who want a simple and effective way to manage their book collection,
+user orders, and shopping cart inventory. It makes the process of purchasing and searching for books more convenient and organized for users.
+Therefore, this application provides many useful features for managing the book business and makes it easier for users to search for and order books.
+
+### Users can utilize this application for:
+1. Retrieving a list of all library books with pagination support.
+2. Obtaining detailed book information using its unique identifier.
+3. Searching for books by title.
+4. Searching for books based on various parameters such as title, author, or genre.
+5. Getting a list of all available book categories.
+6. Accessing detailed category information using its unique identifier.
+7. Retrieving a list of books belonging to a specific category.
+8. Creating a new order.
+9. Receiving a list of all items in a specific order.
+10. Retrieving details of a specific order item using order and item identifiers.
+11. Adding a new product to a user's shopping cart.
+12. Obtaining the contents of a user's shopping cart.
+13. Updating the quantity of a product in the shopping cart.
+14. Removing a product from the shopping cart.
+15. Searching for books by title, author, or ISBN.
+16. Filtering books by categories.
+
+# Реєстрація нового користувача (User Registration):
+1. Use the POST method:
+```code
+/api/auth/register
+```
+Example : 
+```json
+{
+"email": "john.doe@example.com",
+"password": "securePassword123",
+"repeatPassword": "securePassword123",
+"firstName": "John",
+"lastName": "Doe",
+"shippingAddress": "123 Main St, City, Country"
+}
+```
+The expected response will include the user's identifier and other user-related information.
+User Authentication:
+***Use the POST method:***
+```code 
+/api/auth/login.
+```
+Example :
+```json
+{
+"email": "john.doe@example.com",
+"password": "securePassword123"
+}
+```
+***The expected response will contain an access token that needs to be used for further requests.***
+
+## Example Requests:
+
+**Request to search for books by an author:**
+* Method: **GET**
+* URL: [http://localhost:8088/api/books/search?author=Taras%20Hryhorovych%20Shevchenko](http://localhost:8088/api/books/search?author=Taras%20Hryhorovych%20Shevchenko)
+* In this example, you are searching for books by the author "Taras Hryhorovych Shevchenko." The response to this request will contain a list of books that match your author query.
+
+**Request to view all categories (GET: /api/categories):**
+* Method: **GET**
+* URL: [http://localhost:8088/api/categories](http://localhost:8088/api/categories)
+* This request allows you to retrieve a list of all book categories in your application.
+
+**Request to view a specific category by its unique identifier (GET: /api/categories/{id}):**
+* Method: **GET**
+* URL: [http://localhost:8088/api/categories/{id}](http://localhost:8088/api/categories/{id})
+* You can specify the unique identifier of the category in the URL, and this request will return detailed information about that category.
+
+**Request to get a list of books in a specific category (GET: /api/categories/{id}/books):**
+* Method: **GET**
+* URL: [http://localhost:8088/api/categories/{id}/books](http://localhost:8088/api/categories/{id}/books)
+* In this example, you specify the unique identifier of the category in the URL, and this request will return a list of books that belong to that category.
+
+**Request to get a user's cart (GET: /api/cart):**
+* Method: **GET**
+* URL: [http://localhost:8088/api/cart](http://localhost:8088/api/cart)
+* This request allows you to retrieve the user's shopping cart along with the list of items in the cart. It returns detailed information about the cart and the items in it.
+
+**Request to add an item to the user's cart (POST: /api/cart):**
+* Method: **POST**
+* URL: [http://localhost:8088/api/cart](http://localhost:8088/api/cart)
+* Example JSON request body:
+```json
+{
+  "bookId": 2,
+  "quantity": 5
+}
+```
+This request adds the specified item in the specified quantity to the user's cart.
+
+**Request to update the quantity of an item in the user's cart (PUT: /api/cart/cart-items/{cartItemId}):**
+* Method: PUT
+* URL: http://localhost:8088/api/cart/cart-items/{cartItemId}
+* Example JSON request body:
+```json
+{
+"quantity": 10
+}
+```
+* This request updates the quantity of a specific item in the user's cart.
+
+**Request to remove an item from the user's cart (DELETE: /api/cart/cart-items/{cartItemId}):**
+* Method: DELETE
+* URL: http://localhost:8088/api/cart/cart-items/{cartItemId}
+* This request deletes a specific item from the user's cart based on its unique identifier
+
+
+
+# Access to Additional Features for ADMIN:
+If a user has the role ADMIN, they can utilize additional functionalities such as creating a new book, editing,
+and deleting an existing book. 
+These requests will have endpoints /api/books/ and /api/books/{id} for creating, editing, and deleting, respectively.
+* Utilizing the Access Token:
+* After successful authentication, you will receive an access token.
+* This access token should be included in the header of each request that requires authentication.
+* It will be used to verify the user's rights and grant access to specific features.
+
+# Key Features 🔑
+1. User Authentication and Authorization:
+* The project provides user authentication based on their email and password using JSON Web Tokens (JWT).
+* Spring Security is used to configure application security and protect resources.
+2. User Registration:
+* Users can register, providing information including email and password.
+3. JWT Token Generation
+* JWT tokens are used for secure user authentication and access control to protected resources.
+4. Email Validation:
+* Implemented email format validation and verification for user emails.
+5. Logging:
+* Log4j2 is used for logging actions and events within the application.
+6. Springdoc OpenAPI:
+* Springdoc OpenAPI is used for automated API documentation generation.
+7. Password Encryption:
+* BCrypt is used for secure storage and comparison of user passwords.
+8. Security Management:
+* Security configuration using Spring Security to ensure data confidentiality and integrity.
+9. Integration Tests:
+* Integration tests with Testcontainers to check component interactions, including interactions with the database.
+10. Data Validation:
+* Data validation is used, including email format checking and password matching.
+11. Pagination Support for book and order listings.
+12. Ability to search for books using various criteria (title, author, genre, etc.).
+13. Management of book categories and their detailed information.
+14. Creation and management of user orders.
+15. Handling the contents of a user's shopping cart and updating the quantity of items in the cart.
+
+
+#  Email and Password Validation 🔧
+
+The project includes email validation and password matching. For email validation, a custom annotation @Email is used, and for password matching, @MatchPassword annotation is used. Details can be found in respective classes.
+
+# EmailValidator 🔨
+
+The EmailValidator class is used for email validation. The @Email annotation is used to mark methods that accept email addresses. The validate() method is used for email address validation.
+
+# PasswordMatcher ✒️
+
+The PasswordMatcher class is used for password matching. The @MatchPassword annotation is used to mark methods that accept passwords. The matches() method is used for comparing two passwords.
+
+
+# Requirements  ⚠️
+Before starting work on the project, make sure you have the following components installed:
+
+- 🔺 Java Development Kit (JDK) version 11 or higher.
+- 🔺 Maven (4.0.0): Tool for project building and dependency management.
+- 🔺 Git
+- 🔺 MySQL: Database used for data storage.
+- 🔺 Properly configured pom.xml file containing the following dependencies :
+*  For the detailed pom.xml file, you can find it in the project folder 📕.
+
+
+## How to Install
+Follow these steps to install and run the project:
+1. Clone the repository:
+   ```shell
+   git clone git@github.com:RostyslavOnysh/book-store.git
+   ```
+
+
+# Connection class 📡
+To use the program correctly, you must replace the fields in the ***application.properties*** file : 
+```bash
+#MYSQL
+spring.datasource.url=YOUR_URL
+spring.datasource.username=USERNAME
+spring.datasource.password=PASSWORD
+spring.datasource.driver-class-name=DRIVER
+spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL57Dialect
+
+spring.jpa.hibernate.ddl-auto=validate
+server.servlet.context-path=/api
+spring.jpa.show-sql=true
+spring.jpa.open-in-view=false
+
+jwt.secret=JWT_SECRET
+jwt.expiration=900000
+
+mail.smtp.host=smtp.gmail.com
+mail.smtp.port=587
+mail.smtp.auth=true
+mail.smtp.starttls.enable=true
+mail.username=YOUR_EMAIL
+mail.password=YOUR_PASSWORD
 ```
 
-And add this dependencies to *pom.xml*
-```xml
-<dependency>
-<groupId>com.h2database</groupId>
-<artifactId>h2</artifactId>
-<scope>test</scope>
-</dependency>
-```
+# Contact ♨️📬
+Feel free to contact the author for any questions or feedback:
+- Author: [Rostyslav](https://www.linkedin.com/in/rostyslav-onyshchenko-7ab348281/)
+# License ☑️
+This project is distributed under the MIT License. Feel free to modify and adapt it to your needs.
+
+
