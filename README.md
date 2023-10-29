@@ -3,7 +3,7 @@
 - This application is a library and order management system for a bookstore.
 
   [Why Focus on This Application?](#why-focus-on-this-application?)
-  [Access to Additional Features for ADMIN](#Access-to-Additional-Features-for-ADMIN)
+  [Access to Additional Features for ADMIN:](#Access-to-Additional-Features-for-ADMIN:)
 
 
 ## Project Technology Stack: 💻🔧📚
