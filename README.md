@@ -26,8 +26,8 @@ user orders, and shopping cart inventory. It makes the process of purchasing and
 Therefore, this application provides many useful features for managing the book business and makes it easier for users to search for and order books.
 
 ### Users can utilize this application for: 📝
-- 🔸 Retrieving a list of all library books with pagination support.
-- 🔸 Obtaining detailed book information using its unique identifier.
+** 🔸 Retrieving a list of all library books with pagination support.
+🔸 Obtaining detailed book information using its unique identifier.
 🔸 Searching for books by title.
 🔸 Searching for books based on various parameters such as title, author, or genre.
 🔸 Getting a list of all available book categories.
