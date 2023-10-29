@@ -1,13 +1,13 @@
-# Readers' Paradise: Your Bookish Heaven 
+# Readers' Paradise: Your Bookish Heaven 🌄
 
 
-## Welcome to Readers' Paradise - Your Bookish Heaven!
+## Welcome to Readers' Paradise - Your Bookish Heaven! 📚🏰
 
 This application is a library and order management system for a bookstore.
 
-## Project Technology Stack:
+## Project Technology Stack: 💻🔧📚
 
-* Programming Language Java
+* Programming Language : ***Java***
 * Framework: Spring Boot
 * Spring Security and JWT: For authentication and security
 * Springdoc OpenAPI: For OpenAPI documentation
@@ -20,7 +20,7 @@ This application is a library and order management system for a bookstore.
 * Email: ***javax.mail***
 * Testcontainers: For integration tests with the H2 test database
 
-## What is it for?
+## What is it for? 🔍
 This application is designed for bookstores or libraries to manage their collection of books, categories, and user orders.
 
 ## Why Focus on This Application?
@@ -28,7 +28,7 @@ his application is the perfect tool for bookstore or library owners who want a s
 user orders, and shopping cart inventory. It makes the process of purchasing and searching for books more convenient and organized for users.
 Therefore, this application provides many useful features for managing the book business and makes it easier for users to search for and order books.
 
-### Users can utilize this application for:
+### Users can utilize this application for: 📝
 1. Retrieving a list of all library books with pagination support.
 2. Obtaining detailed book information using its unique identifier.
 3. Searching for books by title.
@@ -46,7 +46,7 @@ Therefore, this application provides many useful features for managing the book 
 15. Searching for books by title, author, or ISBN.
 16. Filtering books by categories.
 
-# Реєстрація нового користувача (User Registration):
+# User Registration : 📌 
 1. Use the POST method:
 ```code
 /api/auth/register
@@ -63,7 +63,7 @@ Example :
 }
 ```
 The expected response will include the user's identifier and other user-related information.
-User Authentication:
+2. User Authentication: 📌 
 ***Use the POST method:***
 ```code 
 /api/auth/login.
@@ -79,32 +79,32 @@ Example :
 
 ## Example Requests:
 
-**Request to search for books by an author:**
+**Request to search for books by an author:** 📌 
 * Method: **GET**
 * URL: [http://localhost:8088/api/books/search?author=Taras%20Hryhorovych%20Shevchenko](http://localhost:8088/api/books/search?author=Taras%20Hryhorovych%20Shevchenko)
 * In this example, you are searching for books by the author "Taras Hryhorovych Shevchenko." The response to this request will contain a list of books that match your author query.
 
-**Request to view all categories (GET: /api/categories):**
+**Request to view all categories (GET: /api/categories):**  📌 
 * Method: **GET**
 * URL: [http://localhost:8088/api/categories](http://localhost:8088/api/categories)
 * This request allows you to retrieve a list of all book categories in your application.
 
-**Request to view a specific category by its unique identifier (GET: /api/categories/{id}):**
+**Request to view a specific category by its unique identifier (GET: /api/categories/{id}):**  📌 
 * Method: **GET**
 * URL: [http://localhost:8088/api/categories/{id}](http://localhost:8088/api/categories/{id})
 * You can specify the unique identifier of the category in the URL, and this request will return detailed information about that category.
 
-**Request to get a list of books in a specific category (GET: /api/categories/{id}/books):**
+**Request to get a list of books in a specific category (GET: /api/categories/{id}/books):**  📌 
 * Method: **GET**
 * URL: [http://localhost:8088/api/categories/{id}/books](http://localhost:8088/api/categories/{id}/books)
 * In this example, you specify the unique identifier of the category in the URL, and this request will return a list of books that belong to that category.
 
-**Request to get a user's cart (GET: /api/cart):**
+**Request to get a user's cart (GET: /api/cart):**  📌 
 * Method: **GET**
 * URL: [http://localhost:8088/api/cart](http://localhost:8088/api/cart)
 * This request allows you to retrieve the user's shopping cart along with the list of items in the cart. It returns detailed information about the cart and the items in it.
 
-**Request to add an item to the user's cart (POST: /api/cart):**
+**Request to add an item to the user's cart (POST: /api/cart):**  📌 
 * Method: **POST**
 * URL: [http://localhost:8088/api/cart](http://localhost:8088/api/cart)
 * Example JSON request body:
@@ -114,9 +114,9 @@ Example :
   "quantity": 5
 }
 ```
-This request adds the specified item in the specified quantity to the user's cart.
+* This request adds the specified item in the specified quantity to the user's cart.
 
-**Request to update the quantity of an item in the user's cart (PUT: /api/cart/cart-items/{cartItemId}):**
+**Request to update the quantity of an item in the user's cart (PUT: /api/cart/cart-items/{cartItemId}):** 📌 
 * Method: PUT
 * URL: http://localhost:8088/api/cart/cart-items/{cartItemId}
 * Example JSON request body:
@@ -127,14 +127,14 @@ This request adds the specified item in the specified quantity to the user's car
 ```
 * This request updates the quantity of a specific item in the user's cart.
 
-**Request to remove an item from the user's cart (DELETE: /api/cart/cart-items/{cartItemId}):**
+**Request to remove an item from the user's cart (DELETE: /api/cart/cart-items/{cartItemId}):** 📌 
 * Method: DELETE
 * URL: http://localhost:8088/api/cart/cart-items/{cartItemId}
 * This request deletes a specific item from the user's cart based on its unique identifier
 
 
 
-# Access to Additional Features for ADMIN:
+# Access to Additional Features for ADMIN: ⚠️
 If a user has the role ADMIN, they can utilize additional functionalities such as creating a new book, editing,
 and deleting an existing book. 
 These requests will have endpoints /api/books/ and /api/books/{id} for creating, editing, and deleting, respectively.
@@ -185,7 +185,7 @@ The EmailValidator class is used for email validation. The @Email annotation is 
 The PasswordMatcher class is used for password matching. The @MatchPassword annotation is used to mark methods that accept passwords. The matches() method is used for comparing two passwords.
 
 
-# Requirements  ⚠️
+# Requirements ♨️
 Before starting work on the project, make sure you have the following components installed:
 
 - 🔺 Java Development Kit (JDK) version 11 or higher.
@@ -196,7 +196,7 @@ Before starting work on the project, make sure you have the following components
 *  For the detailed pom.xml file, you can find it in the project folder 📕.
 
 
-## How to Install
+## How to Install  🔧 
 Follow these steps to install and run the project:
 1. Clone the repository:
    ```shell
