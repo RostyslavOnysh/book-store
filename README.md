@@ -48,7 +48,7 @@ Therefore, this application provides many useful features for managing the book 
 
 # User Registration : 📌 
 1. Use the POST method:
-```code
+```json
 /api/auth/register
 ```
 Example : 
@@ -67,7 +67,7 @@ The expected response will include the user's identifier and other user-related 
 
 
 2. User Authentication: 📌 
-***Use the POST method:***
+* Use the POST method:
 ```code 
 /api/auth/login.
 ```
