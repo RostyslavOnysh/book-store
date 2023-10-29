@@ -26,22 +26,22 @@ user orders, and shopping cart inventory. It makes the process of purchasing and
 Therefore, this application provides many useful features for managing the book business and makes it easier for users to search for and order books.
 
 ### Users can utilize this application for: 📝
-** 🔸 Retrieving a list of all library books with pagination support.
-🔸 Obtaining detailed book information using its unique identifier.
-🔸 Searching for books by title.
-🔸 Searching for books based on various parameters such as title, author, or genre.
-🔸 Getting a list of all available book categories.
-🔸 Accessing detailed category information using its unique identifier.
-🔸 Retrieving a list of books belonging to a specific category.
-🔸 Creating a new order.
-🔸 Receiving a list of all items in a specific order.
-🔸 Retrieving details of a specific order item using order and item identifiers.
-🔸 Adding a new product to a user's shopping cart.
-🔸 Obtaining the contents of a user's shopping cart.
-🔸 Updating the quantity of a product in the shopping cart.
-🔸 Removing a product from the shopping cart.
-🔸 Searching for books by title, author, or ISBN.
-🔸 Filtering books by categories.
+1. Retrieving a list of all library books with pagination support.
+2. Obtaining detailed book information using its unique identifier.
+3. Searching for books by title.
+4. Searching for books based on various parameters such as title, author, or genre.
+5. Getting a list of all available book categories.
+6. Accessing detailed category information using its unique identifier.
+7. Retrieving a list of books belonging to a specific category.
+8. Creating a new order.
+9. Receiving a list of all items in a specific order.
+10. Retrieving details of a specific order item using order and item identifiers.
+11. Adding a new product to a user's shopping cart.
+12. Obtaining the contents of a user's shopping cart.
+13. Updating the quantity of a product in the shopping cart.
+14. Removing a product from the shopping cart.
+15. Searching for books by title, author, or ISBN.
+16. Filtering books by categories.
 
 # User Registration : 📌 
 1. Use the POST method:
@@ -117,6 +117,8 @@ Example :
 }
 ```
 * This request adds the specified item in the specified quantity to the user's cart.
+  <img width="1370" alt="Screenshot 2023-10-29 at 15 22 03" src="https://github.com/RostyslavOnysh/book-store/assets/98691406/c7d6639f-f4de-45fc-8fd9-e963cae9879f">
+
 
 **Request to update the quantity of an item in the user's cart (PUT: /api/cart/cart-items/{cartItemId}):** 📌 
 * Method: PUT
@@ -208,31 +210,17 @@ Follow these steps to install and run the project:
    ```
 
 
-# Connection class 📡
-To use the program correctly, you must replace the fields in the ***application.properties*** file : 
+# Project Launch: 📡
+* Ensure that Docker is installed on your system.
+You can configure the database parameters in the .env file. Make sure you have provided the correct information, such as the username, password, database name, and so on.
+* Open a terminal and navigate to the root directory of your project.
+* Run the application using Docker Compose. Use the following command:
 ```bash
-#MYSQL
-spring.datasource.url=YOUR_URL
-spring.datasource.username=USERNAME
-spring.datasource.password=PASSWORD
-spring.datasource.driver-class-name=DRIVER
-spring.jpa.properties.hibernate.dialect=org.hibernate.dialect.MySQL57Dialect
-
-spring.jpa.hibernate.ddl-auto=validate
-server.servlet.context-path=/api
-spring.jpa.show-sql=true
-spring.jpa.open-in-view=false
-
-jwt.secret=JWT_SECRET
-jwt.expiration=900000
-
-mail.smtp.host=smtp.gmail.com
-mail.smtp.port=587
-mail.smtp.auth=true
-mail.smtp.starttls.enable=true
-mail.username=YOUR_EMAIL
-mail.password=YOUR_PASSWORD
+docker-compose up
 ```
+* This command will start containers for your application and the database in Docker.
+* After a successful launch, you can interact with your application's API. You can use tools like ***Postman or Swagger*** to interact with the API and verify its functionality.
+
 
 # Contact ♨️📬
 Feel free to contact the author for any questions or feedback:
