@@ -63,6 +63,9 @@ Example :
 }
 ```
 The expected response will include the user's identifier and other user-related information.
+<img width="1423" alt="registration" src="https://github.com/RostyslavOnysh/book-store/assets/98691406/3af7b34d-3eca-4471-9561-6fa3a895d299">
+
+
 2. User Authentication: 📌 
 ***Use the POST method:***
 ```code 
@@ -76,6 +79,7 @@ Example :
 }
 ```
 ***The expected response will contain an access token that needs to be used for further requests.***
+<img width="1370" alt="login" src="https://github.com/RostyslavOnysh/book-store/assets/98691406/505fb9c0-ba2f-47d9-9cb5-b5260731213e">
 
 ## Example Requests:
 
@@ -83,6 +87,7 @@ Example :
 * Method: **GET**
 * URL: [http://localhost:8088/api/books/search?author=Taras%20Hryhorovych%20Shevchenko](http://localhost:8088/api/books/search?author=Taras%20Hryhorovych%20Shevchenko)
 * In this example, you are searching for books by the author "Taras Hryhorovych Shevchenko." The response to this request will contain a list of books that match your author query.
+<img width="1370" alt="by author" src="https://github.com/RostyslavOnysh/book-store/assets/98691406/170f49b8-edb4-40e1-bc12-1d281db8e725">
 
 **Request to view all categories (GET: /api/categories):**  📌 
 * Method: **GET**
@@ -126,6 +131,8 @@ Example :
 }
 ```
 * This request updates the quantity of a specific item in the user's cart.
+<img width="1370" alt="Screenshot 2023-10-29 at 15 23 58" src="https://github.com/RostyslavOnysh/book-store/assets/98691406/096183a7-ce88-48c1-90b4-c4a4bd84f4b2">
+
 
 **Request to remove an item from the user's cart (DELETE: /api/cart/cart-items/{cartItemId}):** 📌 
 * Method: DELETE
