@@ -48,7 +48,7 @@ Therefore, this application provides many useful features for managing the book 
 
 # User Registration : 📌 
 1. Use the POST method:
-```json
+```code
 /api/auth/register
 ```
 Example : 
