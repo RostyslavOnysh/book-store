@@ -1,4 +1,4 @@
-# Readers' Paradise: Your Bookish Heaven 🌄
+# Readers Paradise: Your Bookish Heaven 🌄
 - Welcome to Readers' Paradise - Your Bookish Heaven! 📚🏰
 - This application is a library and order management system for a bookstore.
 
