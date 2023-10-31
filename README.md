@@ -2,6 +2,15 @@
 - Welcome to Readers' Paradise - Your Bookish Heaven! 📚🏰
 - This application is a library and order management system for a bookstore.
 
+
+## What is it for? 🔍
+This application is designed for bookstores or libraries to manage their collection of books, categories, and user orders.
+
+## Why Focus on This Application?
+This application is the perfect tool for bookstore or library owners who want a simple and effective way to manage their book collection,
+user orders, and shopping cart inventory. It makes the process of purchasing and searching for books more convenient and organized for users.
+Therefore, this application provides many useful features for managing the book business and makes it easier for users to search for and order books.
+
 ## Project Technology Stack: 💻🔧📚
 
 * Programming Language : ***Java***
@@ -16,14 +25,6 @@
 * MapStruct: For mapper generation
 * Email: ***javax.mail***
 * Testcontainers: For integration tests with the H2 test database
-
-## What is it for? 🔍
-This application is designed for bookstores or libraries to manage their collection of books, categories, and user orders.
-
-## Why Focus on This Application?
-This application is the perfect tool for bookstore or library owners who want a simple and effective way to manage their book collection,
-user orders, and shopping cart inventory. It makes the process of purchasing and searching for books more convenient and organized for users.
-Therefore, this application provides many useful features for managing the book business and makes it easier for users to search for and order books.
 
 ### Users can utilize this application for: 📝
 1. Retrieving a list of all library books with pagination support.
