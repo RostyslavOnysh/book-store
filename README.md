@@ -45,6 +45,10 @@ Therefore, this application provides many useful features for managing the book 
 16. Filtering books by categories.
 
 # User Registration : 📌 
+For a better understanding, you can check out this short tutorial on how to register a new user and log in :
+- https://www.loom.com/share/88084fa77e10417d80fcf3ad32beda23?sid=b27f4be2-fc16-43ca-8ebe-4842a0e4ba5a
+
+
 1. Use the POST method:
 ```code
 /api/auth/register
