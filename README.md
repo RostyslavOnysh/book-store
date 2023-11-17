@@ -106,11 +106,6 @@ Example :
 * URL: [http://localhost:8088/api/categories/{id}/books](http://localhost:8088/api/categories/{id}/books)
 * In this example, you specify the unique identifier of the category in the URL, and this request will return a list of books that belong to that category.
 
-**Request to get a user's cart (GET: /api/cart):**  📌 
-* Method: **GET**
-* URL: [http://localhost:8088/api/cart](http://localhost:8088/api/cart)
-* This request allows you to retrieve the user's shopping cart along with the list of items in the cart. It returns detailed information about the cart and the items in it.
-
 **Request to add an item to the user's cart (POST: /api/cart):**  📌 
 * Here`s short video example : https://www.loom.com/share/e92806fe464c4ed18764431831c2a18a?t=22&sid=32f6aa81-26d0-44ca-bb7b-ac9206359f55
 * Method: **POST**
@@ -124,6 +119,15 @@ Example :
 ```
 * This request adds the specified item in the specified quantity to the user's cart.
   <img width="1370" alt="Screenshot 2023-10-29 at 15 22 03" src="https://github.com/RostyslavOnysh/book-store/assets/98691406/c7d6639f-f4de-45fc-8fd9-e963cae9879f">
+
+
+**Request to get a user's cart (GET: /api/cart):**  📌 
+* Video example how to get info from user shopping cart :
+  https://www.loom.com/share/5f832194408f4890bef6fd19e6f057cf?sid=dfae4dd4-eed5-4e7e-9e98-830c2d24e54c
+* Method: **GET**
+* URL: [http://localhost:8088/api/cart](http://localhost:8088/api/cart)
+* This request allows you to retrieve the user's shopping cart along with the list of items in the cart. It returns detailed information about the cart and the items in it.
+
 
 
 **Request to update the quantity of an item in the user's cart (PUT: /api/cart/cart-items/{cartItemId}):** 📌 
