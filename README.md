@@ -153,9 +153,19 @@ Example :
 * Video example :
 *  https://www.loom.com/share/487c1133149e4c0a9aa08b559d88c37a?sid=5e4ba4b0-5d7a-4ef9-b885-5e56ab4c3489
 * Method: POST
-* URL: http://localhost:8088/api/cart/cart-items/{cartItemId}
-* This request deletes a specific item from the user's cart based on its unique identifier
+* URL: http://localhost:8088/api/orders
+* This request place the order from the user's shopping cart based on its unique identifier
 <img width="1367" alt="Screenshot 2023-11-17 at 13 11 38" src="https://github.com/RostyslavOnysh/book-store/assets/98691406/da33ee03-3a16-484a-9c8f-591088f19e6a">
+
+
+**Request to view your placed order (POST: api/orders):** 📌
+* Video example :
+*  https://www.loom.com/share/a340f74a0ec347678844d9ed6b0bb314?sid=88acbd6b-dabf-46d7-aecb-914c2941826c
+* Method: GET
+* URL: http://localhost:8088/api/orders
+* This request give an opportunity for user to check the order condition 
+<img width="1367" alt="Screenshot 2023-11-17 at 13 20 04" src="https://github.com/RostyslavOnysh/book-store/assets/98691406/0f47734c-2583-4835-94af-3218c907fbc8">
+
 
 
 
