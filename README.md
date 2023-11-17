@@ -61,7 +61,7 @@ Example :
 "repeatPassword": "securePassword123",
 "firstName": "John",
 "lastName": "Doe",
-"shippingAddress": "123 Main St, City, Country"
+"shippingAddress": "123 Main St, City, Country "
 }
 ```
 The expected response will include the user's identifier and other user-related information.
