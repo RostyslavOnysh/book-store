@@ -145,8 +145,17 @@ Example :
 
 **Request to remove an item from the user's cart (DELETE: /api/cart/cart-items/{cartItemId}):** 📌 
 * Method: DELETE
+* URL: http://localhost:8088/api/orders
+* This request place your order
+
+
+**Request to place your order (POST: api/orders):** 📌
+* Video example :
+*  https://www.loom.com/share/487c1133149e4c0a9aa08b559d88c37a?sid=5e4ba4b0-5d7a-4ef9-b885-5e56ab4c3489
+* Method: POST
 * URL: http://localhost:8088/api/cart/cart-items/{cartItemId}
 * This request deletes a specific item from the user's cart based on its unique identifier
+<img width="1367" alt="Screenshot 2023-11-17 at 13 11 38" src="https://github.com/RostyslavOnysh/book-store/assets/98691406/da33ee03-3a16-484a-9c8f-591088f19e6a">
 
 
 
