@@ -112,6 +112,7 @@ Example :
 * This request allows you to retrieve the user's shopping cart along with the list of items in the cart. It returns detailed information about the cart and the items in it.
 
 **Request to add an item to the user's cart (POST: /api/cart):**  📌 
+* Here`s short video example : https://www.loom.com/share/e92806fe464c4ed18764431831c2a18a?t=22&sid=32f6aa81-26d0-44ca-bb7b-ac9206359f55
 * Method: **POST**
 * URL: [http://localhost:8088/api/cart](http://localhost:8088/api/cart)
 * Example JSON request body:
