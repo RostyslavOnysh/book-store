@@ -4,7 +4,7 @@
 
 
 ## What is it for? 🔍
-This application is designed for bookstores or libraries to manage their collection of books, categories, and user orders.
+This application is designed for ***bookstores*** or ***libraries*** to manage their collection of books, categories, and user orders.
 
 ## Why Focus on This Application?
 This application is the perfect tool for bookstore or library owners who want a simple and effective way to manage their book collection,
